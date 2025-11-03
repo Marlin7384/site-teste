@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usuários - Projeto RAP10</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="container" id="user-container">
+    <h1>Carregando...</h1>
+  </main>
+
+  <script>
+    // Captura o parâmetro "group" da URL (ex: ?group=b)
+    const params = new URLSearchParams(window.location.search);
+    const group = params.get("group");
+
+    const container = document.getElementById("user-container");
+
+    if (group === "b") {
+      container.innerHTML = `
+        <h1>Bem-vindo, FERNANDO.FERNANDES</h1>
+        <div class="buttons">
+          <a class="btn" href="https://fernandofd.github.io/simulador-Sigecontrol/" target="_blank">
+            PROJETO SIGE CONTROL
+          </a>
+        </div>
+      `;
+    } else if (group === "a") {
+      container.innerHTML = `
+        <h1>Bem-vindo, MARLON.MARTINS</h1>
+        <p>Conteúdo em desenvolvimento.</p>
+        <a class="btn" href="index.html">Voltar</a>
+      `;
+    } else if (group === "all") {
+      container.innerHTML = `
+        <h1>Bem-vindo, GILSON.CHAGAS</h1>
+        <p>Conteúdo em desenvolvimento.</p>
+        <a class="btn" href="index.html">Voltar</a>
+      `;
+    } else {
+      container.innerHTML = `
+        <h1>Usuário não encontrado</h1>
+        <a class="btn" href="index.html">Voltar</a>
+      `;
+    }
+  </script>
+</body>
+</html>

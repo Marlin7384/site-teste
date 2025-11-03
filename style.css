@@ -1,0 +1,55 @@
+body {
+       font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #336699, #001f3f); /* azul médio para azul bem escuro */
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Container principal */
+.container {
+    max-width: 600px;
+    margin: 100px auto;
+    text-align: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Área dos botões */
+.buttons {
+    display: flex;
+    flex-direction: column; /* coloca um botão embaixo do outro */
+    align-items: center;
+    gap: 20px; /* espaço entre os botões */
+}
+
+/* Estilo dos botões */
+.btn {
+    display: inline-block;
+    width: 80%;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #007BFF; /* borda azul */
+    background-color: #EAF2FF; /* leve fundo azul claro */
+    padding: 15px 20px; /* preenchimento interno */
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.btn:hover {
+    background-color: #007BFF;
+    color: white;
+    transform: scale(1.05);
+}
