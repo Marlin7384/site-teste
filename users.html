@@ -1,53 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usuários - Projeto RAP10</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #002f6c, #0057b8, #0080ff, #00c6ff);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+      color: #333;
+      height: 100vh;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo {
+      position: fixed;
+      top: 3px;
+      left: 2px;
+      width: 140px;
+      padding: 8px;
+      background: rgba(0, 87, 184, 0.8);
+      border-radius: 0 0 10px 0;
+      box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      z-index: 1000;
+      user-select: none;
+    }
+
+    .container {
+      max-width: 320px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      margin: 80px auto 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #02005f;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 
 <body>
+
+  <img src="logoRap10/logoRap10.svg" alt="Logo RAP10" class="logo">
+
   <main class="container" id="user-container">
-    <h1>Carregando...</h1>
+    <h1>Carregando......</h1>
   </main>
 
   <script>
-    // Captura o parâmetro "group" da URL (ex: ?group=b)
     const params = new URLSearchParams(window.location.search);
     const group = params.get("group");
-
     const container = document.getElementById("user-container");
 
     if (group === "b") {
       container.innerHTML = `
         <h1>Bem-vindo, Fernando.Fernandes</h1>
         <div class="buttons">
-          <a class="btn" href="https://fernandofd.github.io/simulador-Sigecontrol/" target="_blank">
-            PROJETO SIGE CONTROL  
-        <a class="btn" href="index.html">Voltar</a>
+          <a class="btn" href="https://fernandofd.github.io/simulador-Sigecontrol/" target="_blank" rel="noopener noreferrer">
+            PROJETO SIGE CONTROL
+          </a>
+          <a class="btn" href="index.html">Voltar</a>
         </div>
       `;
-    } else if (group === "a") {
+    } 
+    else if (group === "a") {
       container.innerHTML = `
         <h1>Bem-vindo, Marlon.Martins</h1>
         <p>Conteúdo em desenvolvimento.</p>
-        <a class="btn" href="https://www.tinkercad.com/things/jnIaqGNJ798-frantic-kasi/editel?returnTo=%2Fthings%2FjnIaqGNJ798-frantic-kasi">
+        <div class="buttons">
+          <a class="btn" href="https://www.tinkercad.com/things/jnIaqGNJ798-frantic-kasi/editel?returnTo=%2Fthings%2FjnIaqGNJ798-frantic-kasi" target="_blank" rel="noopener noreferrer">
             PROJETOS TINKERCAD
-        <a class="btn" href="index.html">Voltar</a>
+          </a>
+          <a class="btn" href="prompts.html">PROMPTS DE ATENDIMENTO</a>
+          <a class="btn" href="index.html">Voltar</a>
+        </div>
       `;
-    } else if (group === "all") {
+    } 
+    else if (group === "all") {
       container.innerHTML = `
         <h1>Bem-vindo, Gilson.Chagas</h1>
         <p>Conteúdo em desenvolvimento.</p>
         <a class="btn" href="index.html">Voltar</a>
       `;
-    } else {
-      container.innerHTML = `
-        <h1>Usuário não encontrado</h1>
-        <a class="btn" href="index.html">Voltar</a>
-      `;
     }
   </script>
+
 </body>
 </html>
+

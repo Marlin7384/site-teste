@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompts de Atendimento - RAP10</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #002f6c, #0057b8, #0080ff, #00c6ff);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+      color: #333;
+      height: 100vh;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo {
+      position: fixed;
+      top: 3px;
+      left: 2px;
+      width: 140px;
+      padding: 8px;
+      background: rgba(0, 87, 184, 0.8);
+      border-radius: 0 0 10px 0;
+      box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      z-index: 1000;
+      user-select: none;
+    }
+
+    .container {
+      max-width: 340px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      margin: 100px auto 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #02005f;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Cor e efeito quando copiado */
+    .copiado {
+      background-color: #28a745 !important;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <img src="logoRap10/logoRap10.svg" alt="Logo RAP10" class="logo">
+
+  <main class="container">
+    <h1>PROMPTS DE ATENDIMENTO</h1>
+    <div class="buttons" id="promptsContainer"></div>
+    <button class="btn" id="voltarBtn">Voltar</button>
+  </main>
+
+  <!-- Som de clique (pequeno áudio base64 para não depender de arquivo externo) -->
+  <audio id="clickSound">
+    <source src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCAAWGluZwAAAA8AAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAACAAACcQCAAAA" type="audio/mp3">
+  </audio>
+
+  <script>
+    const mensagens = [
+      "Bom dia! Sou Marlon do suporte RAP10. Como posso te ajudar hoje?",
+      "Boa tarde! Sou Marlon do suporte RAP10. Em que posso te ajudar?",
+      "Boa noite! Sou Marlon do suporte RAP10. Como posso te ajudar?",
+      "Poderia, por favor, avaliar meu atendimento? Sua opinião é muito importante!"
+    ];
+
+    const container = document.getElementById("promptsContainer");
+    const clickSound = document.getElementById("clickSound");
+    const voltarBtn = document.getElementById("voltarBtn");
+
+    // Cria os botões dinamicamente
+    container.innerHTML = mensagens
+      .map(msg => `<button class="btn promptMsg" data-msg="${msg}">${msg.split("!")[0]}!</button>`)
+      .join("");
+
+    // Função para tocar o som
+    function playSound() {
+      clickSound.currentTime = 0;
+      clickSound.play().catch(() => {});
+    }
+
+    // Adiciona evento de clique em cada botão de prompt
+    document.querySelectorAll(".promptMsg").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const text = btn.getAttribute("data-msg");
+
+        try {
+          await navigator.clipboard.writeText(text);
+          playSound();
+        } catch (err) {
+          alert("Não foi possível copiar a mensagem.");
+          return;
+        }
+
+        // Feedback visual
+        const originalText = btn.textContent;
+        btn.textContent = "✅ Copiado!";
+        btn.classList.add("copiado");
+
+        // Restaura o botão após 1,5 segundos
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove("copiado");
+        }, 1500);
+      });
+    });
+
+    // Botão Voltar — volta para a página anterior do histórico
+    voltarBtn.addEventListener("click", () => {
+      playSound();
+      window.history.back();
+    });
+  </script>
+
+</body>
+</html>

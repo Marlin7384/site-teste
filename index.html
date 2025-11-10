@@ -1,20 +1,144 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROJETO RAP10</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PROJETO RAP10</title>
+
+  <style>
+    /* ===== Fundo gradiente animado ===== */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #002f6c, #0057b8, #0080ff, #00c6ff);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== Logo ===== */
+    .logo {
+      position: fixed;
+      top: 15px;
+      left: 20px;
+      width: 140px;
+      background: rgba(0, 87, 184, 0.8);
+      padding: 8px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 198, 255, 0.6);
+      text-align: center;
+      font-weight: bold;
+      color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 45px rgba(0,198,255,1);
+      filter: drop-shadow(0 0 25px rgba(255,255,255,0.9));
+    }
+
+    /* ===== Container central ===== */
+    .container {
+      width: 280px;
+      max-width: 90%;
+      text-align: center;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== Títulos ===== */
+    h1 {
+      color: #02005f;
+      margin-bottom: 20px;
+    }
+
+    /* ===== Botões ===== */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 90%;
+      text-decoration: none;
+      color: #fff;
+      background-color: #007bff;
+      padding: 12px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Começa escondido */
+    #opcoesUsuarios {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-    <main class="container">
-        <h1>Escolha um grupo de usuários</h1>
-        <div class="buttons">
-            <a class="btn" href="users.html?group=a">MARLON.MARTINS</a>
-            <a class="btn" href="users.html?group=b">FERNANDO.FERNANDES</a>
-            <a class="btn" href="users.html?group=all">GILSON.CHAGAS</a>
-        </div>
-    </main>
+  <img src="logoRap10/logoRap10.svg" alt="Logo RAP10" class="logo">
+
+  <main class="container">
+    <h1>Projeto RAP10</h1>
+
+    <!-- Botão principal -->
+    <button class="btn" id="toggleUsuarios">Usuários</button>
+
+    <!-- Lista de usuários (escondida) -->
+    <div class="buttons" id="opcoesUsuarios">
+      <a class="btn" href="users.html?group=a">MARLON.MARTINS</a>
+      <a class="btn" href="users.html?group=b">FERNANDO.FERNANDES</a>
+      <a class="btn" href="users.html?group=all">GILSON.CHAGAS</a>
+      <button class="btn" id="voltarBtn">Voltar</button>
+    </div>
+  </main>
+
+  <script>
+    const btnUsuarios = document.getElementById("toggleUsuarios");
+    const opcoes = document.getElementById("opcoesUsuarios");
+    const voltarBtn = document.getElementById("voltarBtn");
+
+    // Quando clicar em "Usuários", mostra a lista e esconde o botão principal
+    btnUsuarios.addEventListener("click", () => {
+      btnUsuarios.style.display = "none";
+      opcoes.style.display = "flex";
+    });
+
+    // Quando clicar em "Voltar", esconde a lista e mostra o botão principal
+    voltarBtn.addEventListener("click", () => {
+      opcoes.style.display = "none";
+      btnUsuarios.style.display = "inline-block";
+    });
+  </script>
 </body>
 </html>
